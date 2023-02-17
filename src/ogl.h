@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -48,7 +48,7 @@ void check_gl_error();
 void InitOpenglExtensions();
 void PrintGLInfo();
 
-void set_material_diffuse(const sf::Color& specular_colour);
+void set_material_diffuse(const sf::Color& diffuse_colour);
 void set_material(const sf::Color& diffuse_colour,
                   const sf::Color& specular_colour,
                   float specular_exp);

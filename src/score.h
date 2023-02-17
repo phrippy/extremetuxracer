@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "states.h"
 #include "spx.h"
-#include <map>
+#include <unordered_map>
 
 #define MAX_SCORES 8
 
@@ -43,7 +43,7 @@ struct TScoreList {
 
 class CScore : public State {
 private:
-	std::map<std::string, std::map<std::string, TScoreList>> Scorelist;
+	std::unordered_map<std::string, std::unordered_map<std::string, TScoreList>> Scorelist;
 
 	void Enter();
 	void Loop(float time_step);

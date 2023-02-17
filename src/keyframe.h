@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -60,7 +60,7 @@ public:
 	void Update(float timestep);
 	void UpdateTest(float timestep, CCharShape *shape);
 	bool Load(const std::string& dir, const std::string& filename);
-	void CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos) const;
+	void CalcKeyframe(std::size_t idx, CCharShape *shape, const TVector3d& refpos_) const;
 
 	// test and editing
 	TKeyframe *GetFrame(std::size_t idx);

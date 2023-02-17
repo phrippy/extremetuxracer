@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -86,9 +86,9 @@ void PrintVector4(const TVector4d& v) {
 	std::cout << v.x << "  " << v.y << "  " << v.z << "  " << v.w << '\n';
 }
 
-void PrintColor(const sf::Color& v) {
+void PrintColor(const sf::Color& c) {
 	std::cout.precision(3);
-	std::cout << v.r << "  " << v.g << "  " << v.b << '\n';
+	std::cout << c.r << "  " << c.g << "  " << c.b << '\n';
 }
 
 void PrintVector2(const TVector2d& v) {
@@ -173,7 +173,7 @@ bool FileExists(const std::string& filename) {
 }
 
 bool FileExists(const std::string& dir, const std::string& filename) {
-	return FileExists(dir + SEP + filename);
+	return FileExists(MakePathStr(dir, filename));
 }
 
 #ifndef OS_WIN32_MSC

@@ -8,7 +8,13 @@ pkgdata_DATA = \
 	fi_FI.lst	\
 	es_ES.lst	\
 	fr_FR.lst	\
+	it_IT.lst	\
 	pl_PL.lst	\
+	se_SE.lst	\
+	eo.lst		\
+	du_NL.lst	\
+	ro_RO.lst	\
+	uk_UA.lst	\
 	xx_XX.lst
 
 EXTRA_DIST = $(pkgdata_DATA)

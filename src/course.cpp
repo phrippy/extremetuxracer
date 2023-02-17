@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -72,7 +72,7 @@ CCourse::CCourse()
 }
 
 CCourse::~CCourse() {
-	for (std::map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
+	for (std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
 		i->second.Free();
 	ResetCourse();
 }
@@ -140,7 +140,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x-1,y+1);
-					p2 = NMLPOINT(x  ,y+1);
+					p2 = NMLPOINT(x,y+1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v2, v1);
@@ -159,7 +159,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x+1,y-1);
-					p2 = NMLPOINT(x  ,y-1);
+					p2 = NMLPOINT(x,y-1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v2, v1);
@@ -178,7 +178,7 @@ void CCourse::CalcNormals() {
 					nml += n;
 
 					p1 = NMLPOINT(x+1,y+1);
-					p2 = NMLPOINT(x  ,y+1);
+					p2 = NMLPOINT(x,y+1);
 					v1 = p1 - p0;
 					v2 = p2 - p0;
 					n = CrossProduct(v1, v2);
@@ -199,7 +199,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x > 0 && y < ny-1) {
 					TVector3d p1 = NMLPOINT(x-1,y);
-					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d p2 = NMLPOINT(x,y+1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v2, v1);
@@ -209,7 +209,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x < nx-1 && y > 0) {
 					TVector3d p1 = NMLPOINT(x+1,y);
-					TVector3d p2 = NMLPOINT(x  ,y-1);
+					TVector3d p2 = NMLPOINT(x,y-1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v2, v1);
@@ -219,7 +219,7 @@ void CCourse::CalcNormals() {
 				}
 				if (x < nx-1 && y < ny-1) {
 					TVector3d p1 = NMLPOINT(x+1,y);
-					TVector3d p2 = NMLPOINT(x  ,y+1);
+					TVector3d p2 = NMLPOINT(x,y+1);
 					TVector3d v1 = p1 - p0;
 					TVector3d v2 = p2 - p0;
 					TVector3d n = CrossProduct(v1, v2);
@@ -375,9 +375,8 @@ void CCourse::LoadItemList() {
 		std::string name = SPStrN(*line, "name");
 		std::size_t type = ObjectIndex[name];
 		if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-			std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 			ObjTypes[type].texture = new TTexture();
-			ObjTypes[type].texture->Load(terrpath, false);
+			ObjTypes[type].texture->Load(MakePathStr(param.obj_dir, ObjTypes[type].textureFile), false);
 		}
 
 		if (ObjTypes[type].collidable)
@@ -385,6 +384,9 @@ void CCourse::LoadItemList() {
 		else
 			NocollArr.emplace_back(xx, FindYCoord(xx, zz), zz, height, diam, ObjTypes[type]);
 	}
+	std::sort(CollArr.begin(), CollArr.end(), [](const TCollidable& l, const TCollidable& r) -> bool {
+		return l.tree_type < r.tree_type;
+	});
 }
 
 // --------------------	LoadObjectMap ---------------------------------
@@ -452,9 +454,8 @@ bool CCourse::LoadAndConvertObjectMap() {
 				double xx = (nx - x) / (double)((double)nx - 1.0) * curr_course->size.x;
 				double zz = -(int)(ny - y) / (double)((double)ny - 1.0) * curr_course->size.y;
 				if (ObjTypes[type].texture == nullptr && ObjTypes[type].drawable) {
-					std::string terrpath = param.obj_dir + SEP + ObjTypes[type].textureFile;
 					ObjTypes[type].texture = new TTexture();
-					ObjTypes[type].texture->Load(terrpath, false);
+					ObjTypes[type].texture->Load(MakePathStr(param.obj_dir, ObjTypes[type].textureFile), false);
 				}
 
 				// set random height and diam - see constants above
@@ -646,7 +647,7 @@ bool CCourseList::Load(const std::string& dir) {
 		courses[i].name = SPStrN(*line1, "name");
 		courses[i].dir = SPStrN(*line1, "dir", "nodir");
 
-		std::string coursepath = dir + SEP + courses[i].dir;
+		std::string coursepath = MakePathStr(dir, courses[i].dir);
 		if (DirExists(coursepath.c_str())) {
 			// preview
 			std::string previewfile = coursepath + SEP "preview.png";
@@ -692,7 +693,7 @@ void CCourseList::Free() {
 }
 
 void CCourse::FreeCourseList() {
-	for (std::map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
+	for (std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin(); i != CourseLists.end(); ++i)
 		i->second.Free();
 }
 
@@ -714,7 +715,7 @@ bool CCourse::LoadCourseList() {
 }
 
 CCourseList* CCourse::getGroup(std::size_t index) {
-	std::map<std::string, CCourseList>::iterator i = CourseLists.begin();
+	std::unordered_map<std::string, CCourseList>::iterator i = CourseLists.begin();
 	std::advance(i, index);
 	return &i->second;
 }

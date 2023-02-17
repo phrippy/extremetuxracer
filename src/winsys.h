@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -49,7 +49,7 @@ public:
 	const TScreenRes& GetResolution(std::size_t idx) const;
 	std::string GetResName(std::size_t idx) const;
 	void Init();
-	void SetupVideoMode(const TScreenRes& resolution);
+	void SetupVideoMode(const TScreenRes& res);
 	void SetupVideoMode(std::size_t idx);
 	void SetupVideoMode(int width, int height);
 	void KeyRepeat(bool repeat);

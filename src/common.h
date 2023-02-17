@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -107,7 +107,7 @@ bool	DirExists(const char *dirname);
 void	Message(const char *msg, const char *desc);
 void	Message(const char *msg);
 void	Message(const std::string& a, const std::string& b);
-void	Message(const std::string& a);
+void	Message(const std::string& msg);
 void	SaveMessages();
 
 // --------------------------------------------------------------------

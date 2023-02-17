@@ -3,7 +3,7 @@ EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
 Copyright (C) 2004-2005 Volker Stroebel (Planetpenguin Racer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -56,7 +56,7 @@ TMatrix<4, 4> RotateAboutVectorMatrix(const TVector3d& u, double angle);
 TQuaternion MultiplyQuaternions(const TQuaternion& q, const TQuaternion& r);
 TQuaternion ConjugateQuaternion(const TQuaternion& q);
 TMatrix<4, 4> MakeMatrixFromQuaternion(const TQuaternion& q);
-TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& mat);
+TQuaternion MakeQuaternionFromMatrix(const TMatrix<4, 4>& m);
 TQuaternion MakeRotationQuaternion(const TVector3d& s, const TVector3d& t);
 TQuaternion InterpolateQuaternions(const TQuaternion& q, TQuaternion r, double t);
 TVector3d	RotateVector(const TQuaternion& q, const TVector3d& v);

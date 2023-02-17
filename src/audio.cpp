@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -171,6 +171,7 @@ void CMusic::LoadMusicList() {
 	// --- music ---
 	CSPList list;
 	if (list.Load(param.music_dir, "music.lst")) {
+		musics.reserve(list.size());
 		for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 			std::string name = SPStrN(*line, "name");
 			std::string musicfile = SPStrN(*line, "file");

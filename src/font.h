@@ -3,7 +3,7 @@ EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
 Copyright (C) 2004-2005 Volker Stroebel (Planetpenguin Racer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@ GNU General Public License for more details.
 
 #include "bh.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 // --------------------------------------------------------------------
 //		CFont
@@ -31,7 +31,7 @@ GNU General Public License for more details.
 class CFont {
 private:
 	std::vector<sf::Font*> fonts;
-	std::map<std::string, std::size_t> fontindex;
+	std::unordered_map<std::string, std::size_t> fontindex;
 
 	int curr_font;
 	sf::Color curr_col;

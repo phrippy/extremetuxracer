@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -246,6 +246,7 @@ bool CPlayers::LoadAvatars() {
 		return false;
 	}
 
+	avatars.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string filename = SPStrN(*line, "file", "unknown");
 		TTexture* texture = new TTexture();
@@ -271,9 +272,9 @@ const std::string& CPlayers::GetDirectAvatarName(std::size_t avatar) const {
 //				Character Administration
 // ********************************************************************
 
-CKeyframe* TCharacter::GetKeyframe(TFrameType type_) {
-	if (type_ < 0 || type_ >= NUM_FRAME_TYPES) return nullptr;
-	return &frames[type_];
+CKeyframe* TCharacter::GetKeyframe(TFrameType frametype) {
+	if (frametype < 0 || frametype >= NUM_FRAME_TYPES) return nullptr;
+	return &frames[frametype];
 }
 
 
@@ -304,7 +305,7 @@ bool CCharacter::LoadCharacterList() {
 		std::string typestr = SPStrN(*line, "type", "unknown");
 		CharList[i].type = SPIntN(char_type_index, typestr, -1);
 
-		std::string charpath = param.char_dir + SEP + CharList[i].dir;
+		std::string charpath = MakePathStr(param.char_dir, CharList[i].dir);
 		if (DirExists(charpath.c_str())) {
 			std::string previewfile = charpath + SEP "preview.png";
 

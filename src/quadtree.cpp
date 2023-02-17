@@ -479,7 +479,7 @@ void quadsquare::EnableEdgeVertex(int index, bool IncrementCount, const quadcorn
 	if (IncrementCount == true && (index == 0 || index == 3)) {
 		SubEnabledCount[index & 1]++;
 	}
-	quadsquare*	p = this;
+	quadsquare*	p;
 	const quadcornerdata* pcd = &cd;
 	for (;;) {
 		int	ci = pcd->ChildIndex;
@@ -591,7 +591,7 @@ bool quadsquare::BoxTest(int x, int z, float size, float miny, float maxy, float
 	float	dx = (std::fabs(x + half - Viewer[0]) - half) * std::fabs(ScaleX);
 	float	dy = std::fabs((miny + maxy) * 0.5f - Viewer[1]) - (maxy - miny) * 0.5f;
 	float	dz = (std::fabs(z + half - Viewer[2]) - half) * std::fabs(ScaleZ);
-	float	d = std::max(dx, std::max(dy , dz));
+	float	d = std::max(dx, std::max(dy, dz));
 
 	if (d < ERROR_MAGNIFICATION_THRESHOLD) {
 		error *= ERROR_MAGNIFICATION_AMOUNT;
@@ -782,7 +782,7 @@ void quadsquare::Render(const quadcornerdata& cd, GLubyte *vnc_array) {
 			}
 
 			for (std::size_t j=0; j<numTerrains; j++) {
-				if (Course.TerrList[j].texture > 0) {
+				if (Course.TerrList[j].texture != nullptr) {
 					Course.TerrList[j].texture->Bind();
 
 					for (GLuint i=0; i<VertexArrayCounter; i++) {
@@ -1050,8 +1050,8 @@ void quadsquare::SetScale(double x, double z) {
 }
 
 CourseFields* quadsquare::Fields;
-void quadsquare::SetFields(CourseFields* t) {
-	Fields = t;
+void quadsquare::SetFields(CourseFields* fields) {
+	Fields = fields;
 }
 
 float HeightMapInfo::Sample(int x, int z) const {

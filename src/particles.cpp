@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -291,18 +291,18 @@ void Particle::draw_billboard(const CControl *ctrl, double width, double height,
 	TVector3d pt3 = pt2 + height * y_vec;
 	TVector3d pt4 = pt3 + -width * x_vec;
 	const GLfloat vtx[] = {
-          static_cast<GLfloat>(pt1.x),
-          static_cast<GLfloat>(pt1.y),
-          static_cast<GLfloat>(pt1.z),
-          static_cast<GLfloat>(pt2.x),
-          static_cast<GLfloat>(pt2.y),
-          static_cast<GLfloat>(pt2.z),
-          static_cast<GLfloat>(pt3.x),
-          static_cast<GLfloat>(pt3.y),
-          static_cast<GLfloat>(pt3.z),
-          static_cast<GLfloat>(pt4.x),
-          static_cast<GLfloat>(pt4.y),
-          static_cast<GLfloat>(pt4.z),
+		static_cast<GLfloat>(pt1.x),
+		static_cast<GLfloat>(pt1.y),
+		static_cast<GLfloat>(pt1.z),
+		static_cast<GLfloat>(pt2.x),
+		static_cast<GLfloat>(pt2.y),
+		static_cast<GLfloat>(pt2.z),
+		static_cast<GLfloat>(pt3.x),
+		static_cast<GLfloat>(pt3.y),
+		static_cast<GLfloat>(pt3.z),
+		static_cast<GLfloat>(pt4.x),
+		static_cast<GLfloat>(pt4.y),
+		static_cast<GLfloat>(pt4.z),
 	};
 
 	glEnableClientState(GL_VERTEX_ARRAY);
@@ -473,27 +473,26 @@ void TFlake::Draw(const TPlane& lp, const TPlane& rp, bool rotate_flake, float d
 
 TFlakeArea::TFlakeArea(
     std::size_t num_flakes,
-    float _xrange,
-    float _ytop,
-    float _yrange,
-    float _zback,
-    float _zrange,
-    float _minSize,
-    float _maxSize,
-    float _speed,
-    bool  rotate) {
-	xrange = _xrange;
-	ytop = _ytop;
-	yrange = _yrange;
-	zback = _zback;
-	zrange = _zrange;
-	minSize = _minSize;
-	maxSize = _maxSize;
-	speed = _speed;
+    float xrange_,
+    float ytop_,
+    float yrange_,
+    float zback_,
+    float zrange_,
+    float minSize_,
+    float maxSize_,
+    float speed_,
+    bool  rotate)
+	: flakes(num_flakes) {
+	xrange = xrange_;
+	ytop = ytop_;
+	yrange = yrange_;
+	zback = zback_;
+	zrange = zrange_;
+	minSize = minSize_;
+	maxSize = maxSize_;
+	speed = speed_;
 	rotate_flake = rotate;
 	left = right = bottom = top = front = back = 0.f;
-
-	flakes.resize(num_flakes);
 }
 
 void TFlakeArea::Draw(const CControl *ctrl) const {
@@ -608,6 +607,7 @@ void CFlakes::UpdateAreas(const CControl *ctrl) {
 
 void CFlakes::Init(int grade, const CControl *ctrl) {
 	Reset();
+	areas.reserve(3);
 	switch (grade) {
 		case 1:
 //			areas.emplace_back(400, 5, 4, 4,     -2, 4, 0.01, 0.02,    5, true);
@@ -784,10 +784,10 @@ void TCurtain::Draw() const {
 			};
 			const GLfloat vtx[] = {
 				-halfsize, -halfsize, 0,
-				halfsize, -halfsize, 0,
-				halfsize, halfsize, 0,
-				-halfsize, halfsize, 0
-			};
+				    halfsize, -halfsize, 0,
+				    halfsize, halfsize, 0,
+				    -halfsize, halfsize, 0
+			    };
 			glVertexPointer(3, GL_FLOAT, 0, vtx);
 			glTexCoordPointer(2, GL_SHORT, 0, tex);
 			glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
@@ -865,6 +865,7 @@ void CCurtain::SetStartParams(const CControl *ctrl) {
 void CCurtain::Init(const CControl *ctrl) {
 	Reset();
 	InitChanges();
+	curtains.reserve(3);
 	switch (g_game.snow_id) {
 		case 1:
 //			curtains.emplace_back(3, 60, 10,       3, -100, -10, 1);

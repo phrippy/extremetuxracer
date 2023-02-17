@@ -3,7 +3,7 @@ EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
 Copyright (C) 2004-2005 Volker Stroebel (Planetpenguin Racer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -120,10 +120,7 @@ int CFont::LoadFont(const std::string& name, const std::string& path) {
 }
 
 int CFont::LoadFont(const std::string& name, const std::string& dir, const std::string& filename) {
-	std::string path = dir;
-	path += SEP;
-	path += filename;
-	return LoadFont(name, path);
+	return LoadFont(name, MakePathStr(dir, filename));
 }
 
 bool CFont::LoadFontlist() {
@@ -133,6 +130,7 @@ bool CFont::LoadFontlist() {
 		return false;
 	}
 
+	fonts.reserve(list.size());
 	for (CSPList::const_iterator line = list.cbegin(); line != list.cend(); ++line) {
 		std::string fontfile = SPStrN(*line, "file");
 		std::string name = SPStrN(*line, "name");
@@ -202,7 +200,7 @@ void CFont::DrawText(float x, float y, const sf::String& text, std::size_t font,
 		x = (Winsys.resolution.width - temp.getLocalBounds().width) / 2;
 	temp.setPosition(x, y);
 	temp.setFillColor(curr_col);
-        temp.setOutlineColor(curr_col);
+	temp.setOutlineColor(curr_col);
 	Winsys.draw(temp);
 }
 

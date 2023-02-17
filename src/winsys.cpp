@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -76,7 +76,7 @@ float CWinsys::CalcScreenScale() const {
 	else return (resolution.height / 768.f);
 }
 
-void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
+void CWinsys::SetupVideoMode(const TScreenRes& res) {
 	int bpp = 32;
 	switch (param.bpp_mode) {
 		case 16:
@@ -93,7 +93,7 @@ void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
 	if (param.fullscreen)
 		style |= sf::Style::Fullscreen;
 
-	resolution = resolution_;
+	resolution = res;
 
 	ResetRenderMode();
 
@@ -105,6 +105,15 @@ void CWinsys::SetupVideoMode(const TScreenRes& resolution_) {
 	window.create(sf::VideoMode(resolution.width, resolution.height, bpp), WINDOW_TITLE, style, ctx);
 	if (param.framerate)
 		window.setFramerateLimit(param.framerate);
+#ifdef _WIN32
+#ifdef UNICODE
+	HICON icon = LoadIcon(GetModuleHandle(NULL), (LPCWSTR)IDI_APPLICATION);
+#else
+	HICON icon = LoadIcon(GetModuleHandle(NULL), (LPCSTR)IDI_APPLICATION);
+#endif
+	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_BIG, (LPARAM)icon);
+	SendMessageW(window.getSystemHandle(), WM_SETICON, ICON_SMALL, (LPARAM)icon);
+#endif
 
 	scale = CalcScreenScale();
 	if (param.use_quad_scale) scale = std::sqrt(scale);

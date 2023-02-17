@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -44,7 +44,7 @@ void CSplashScreen::Enter() {
 	Music.Play(param.menu_music, true);
 }
 
-void CSplashScreen::Loop(float timestep) {
+void CSplashScreen::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 	Trans.LoadTranslations(param.language);  // Before first texts are being displayed
@@ -101,7 +101,7 @@ void CSplashScreen::Loop(float timestep) {
 			int top = AutoYPosN(60);
 			Failure = new sf::Text(reason, FT.getCurrentFont(), FT.GetSize());
 			Failure->setFillColor(colDRed);
-                        Failure->setOutlineColor(colDRed);
+			Failure->setOutlineColor(colDRed);
 			Failure->setPosition((Winsys.resolution.width - Failure->getLocalBounds().width) / 2, top);
 		}
 	}

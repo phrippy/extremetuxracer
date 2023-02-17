@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -20,7 +20,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "keyframe.h"
 #include "spx.h"
-#include <map>
+#include <unordered_map>
 
 
 enum TFrameType {
@@ -71,9 +71,9 @@ struct TEvent {
 
 class CEvents {
 private:
-	std::map<std::string, std::size_t> RaceIndex;
-	std::map<std::string, std::size_t> CupIndex;
-	std::map<std::string, std::size_t> EventIndex;
+	std::unordered_map<std::string, std::size_t> RaceIndex;
+	std::unordered_map<std::string, std::size_t> CupIndex;
+	std::unordered_map<std::string, std::size_t> EventIndex;
 public:
 	std::vector<TRace> RaceList;
 	std::vector<TCup> CupList;
@@ -153,7 +153,7 @@ struct TCharacter {
 	int type;
 	bool finishframesok;
 
-	CKeyframe* GetKeyframe(TFrameType type);
+	CKeyframe* GetKeyframe(TFrameType frametype);
 };
 
 class CCharacter {

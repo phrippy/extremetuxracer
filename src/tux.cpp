@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -221,7 +221,7 @@ bool CCharShape::RotateNode(std::size_t node_name, int axis, double angle) {
 }
 
 bool CCharShape::RotateNode(const std::string& node_trivialname, int axis, double angle) {
-	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return RotateNode(i->second, axis, angle);
 }
@@ -275,7 +275,7 @@ bool CCharShape::ResetNode(std::size_t node_name) {
 }
 
 bool CCharShape::ResetNode(const std::string& node_trivialname) {
-	std::map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = NodeIndex.find(node_trivialname);
 	if (i == NodeIndex.end()) return false;
 	return ResetNode(i->second);
 }
@@ -330,7 +330,7 @@ void CCharShape::Reset() {
 // --------------------------------------------------------------------
 
 TCharMaterial* CCharShape::GetMaterial(const std::string& mat_name) {
-	std::map<std::string, std::size_t>::const_iterator i = MaterialIndex.find(mat_name);
+	std::unordered_map<std::string, std::size_t>::const_iterator i = MaterialIndex.find(mat_name);
 	if (i != MaterialIndex.end() && i->second < Materials.size()) {
 		return &Materials[i->second];
 	}
@@ -485,14 +485,14 @@ bool CCharShape::Load(const std::string& dir, const std::string& filename, bool 
 	return true;
 }
 
-TVector3d CCharShape::AdjustRollvector(const CControl *ctrl, const TVector3d& vel_, const TVector3d& zvec) {
+TVector3d CCharShape::AdjustRollvector(const CControl *ctrl, const TVector3d& vel, const TVector3d& zvec) {
 	TMatrix<4, 4> rot_mat;
-	TVector3d vel = ProjectToPlane(zvec, vel_);
-	vel.Norm();
+	TVector3d v = ProjectToPlane(zvec, vel);
+	v.Norm();
 	if (ctrl->is_braking) {
-		rot_mat = RotateAboutVectorMatrix(vel, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix(v, ctrl->turn_fact * BRAKING_ROLL_ANGLE);
 	} else {
-		rot_mat = RotateAboutVectorMatrix(vel, ctrl->turn_fact * MAX_ROLL_ANGLE);
+		rot_mat = RotateAboutVectorMatrix(v, ctrl->turn_fact * MAX_ROLL_ANGLE);
 	}
 	return TransformVector(rot_mat, zvec);
 }

@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,6 +19,7 @@ GNU General Public License for more details.
 #include <etr_config.h>
 #endif
 
+#include "course.h"
 #include "event_select.h"
 #include "gui.h"
 #include "font.h"
@@ -96,6 +97,14 @@ void CEventSelect::Enter() {
 	int frametop1 = AutoYPosN(35);
 	int frametop2 = AutoYPosN(50);
 
+	/* FIXME: We should support events that use course group other than "default",
+	 *        or what ever is set when we enter the event, but currently we won't.
+	 *        Instead there's currently an assumption that the group is preset
+	 *        correctly, so we set it here before entering event. Without this
+	 *        it would crash if group is earlier changed to some non-default one. */
+	Course.currentCourseList = &Course.CourseLists["default"];
+	g_game.course = nullptr;
+
 	ResetGUI();
 	event = AddUpDown(area.right+8, frametop1, 0, (int)Events.EventList.size() - 1, 0);
 	cup = AddUpDown(area.right + 8, frametop2, 0, (int)Events.EventList[0].cups.size() - 1, 0);
@@ -120,12 +129,12 @@ void CEventSelect::Enter() {
 	Music.Play(param.menu_music, true);
 }
 
-void CEventSelect::Loop(float timestep) {
+void CEventSelect::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

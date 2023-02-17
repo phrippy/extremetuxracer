@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -46,7 +46,7 @@ bool TTexture::Load(const std::string& filename, bool repeatable) {
 }
 
 bool TTexture::Load(const std::string& dir, const std::string& filename, bool repeatable) {
-	return Load(dir + SEP + filename, repeatable);
+	return Load(MakePathStr(dir, filename), repeatable);
 }
 
 void TTexture::Bind() {
@@ -266,14 +266,14 @@ void CTexture::DrawNumChr(char c, int x, int y, int w, int h) {
 		texleft, 0
 	};
 	const GLfloat vtx[] = {
-          static_cast<GLfloat>(x),
-          static_cast<GLfloat>(Winsys.resolution.height - y - h),
-          static_cast<GLfloat>(x + w * 0.9f),
-          static_cast<GLfloat>(Winsys.resolution.height - y - h),
-          static_cast<GLfloat>(x + w * 0.9f),
-          static_cast<GLfloat>(Winsys.resolution.height - y),
-          static_cast<GLfloat>(x),
-          static_cast<GLfloat>(Winsys.resolution.height - y)
+		static_cast<GLfloat>(x),
+		static_cast<GLfloat>(Winsys.resolution.height - y - h),
+		static_cast<GLfloat>(x + w * 0.9f),
+		static_cast<GLfloat>(Winsys.resolution.height - y - h),
+		static_cast<GLfloat>(x + w * 0.9f),
+		static_cast<GLfloat>(Winsys.resolution.height - y),
+		static_cast<GLfloat>(x),
+		static_cast<GLfloat>(Winsys.resolution.height - y)
 	};
 
 	glVertexPointer(2, GL_FLOAT, 0, vtx);

@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -84,18 +84,18 @@ TLabel::TLabel(const sf::String& string, int x, int y, const sf::Color& color)
 	else
 		text.setPosition(x, y);
 	text.setFillColor(color);
-        text.setOutlineColor(color);
+	text.setOutlineColor(color);
 }
 
 void TLabel::Focussed(bool masterFocus) {
 	focus = masterFocus && active;
 	if (focus) {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
-        } else {
+		text.setOutlineColor(colDYell);
+	} else {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
-        }
+		text.setOutlineColor(colWhite);
+	}
 }
 
 void TLabel::Draw() const {
@@ -120,11 +120,11 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 	text.setPosition(x + line + 20, y + line);
 	if (!borderFocus) {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
+		text.setOutlineColor(colWhite);
 	} else {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
-        }
+		text.setOutlineColor(colDYell);
+	}
 	frame.setPosition(x + line, y + line);
 	frame.setOutlineThickness(line);
 	frame.setFillColor(backcol);
@@ -134,14 +134,14 @@ TFramedText::TFramedText(int x, int y, int width, int height, int line, const sf
 void TFramedText::Activated() {
 	if (!active) {
 		text.setFillColor(colLGrey);
-                text.setOutlineColor(colLGrey);
+		text.setOutlineColor(colLGrey);
 	} else if (borderFocus || focus) {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
+		text.setOutlineColor(colDYell);
 	} else {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
-        }
+		text.setOutlineColor(colWhite);
+	}
 }
 
 void TFramedText::Focussed(bool masterFocus) {
@@ -150,14 +150,14 @@ void TFramedText::Focussed(bool masterFocus) {
 		frame.setOutlineColor(colDYell);
 		if (!borderFocus) {
 			text.setFillColor(colDYell);
-                        text.setOutlineColor(colDYell);
-                }
+			text.setOutlineColor(colDYell);
+		}
 	} else {
 		frame.setOutlineColor(colWhite);
 		if (!borderFocus) {
 			text.setFillColor(colWhite);
-                        text.setOutlineColor(colWhite);
-                }
+			text.setOutlineColor(colWhite);
+		}
 	}
 }
 
@@ -188,11 +188,11 @@ TTextButton::TTextButton(int x, int y, const sf::String& text_, int ftsize)
 void TTextButton::Focussed() {
 	if (focus) {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
+		text.setOutlineColor(colDYell);
 	} else {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
-        }
+		text.setOutlineColor(colWhite);
+	}
 }
 
 void TTextButton::Draw() const {
@@ -213,7 +213,7 @@ TTextField::TTextField(int x, int y, int width, int height, const sf::String& te
 	: TWidget(x, y, width, height)
 	, text(text_, FT.getCurrentFont(), FT.AutoSizeN(5))
 	, frame(sf::Vector2f(width-6.f, height-6.f))
-	, cursorShape(sf::Vector2f(2.f, 26.f * Winsys.scale))
+	, cursorShape(sf::Vector2f(2.f, 30.f * Winsys.scale))
 	, maxLng(32)
 	, time(0.0)
 	, cursor(false) {
@@ -233,10 +233,10 @@ void TTextField::Draw() const {
 		Winsys.draw(cursorShape);
 }
 
-void TTextField::TextEnter(char key) {
-	if (key != '\b') {
+void TTextField::TextEnter(char c) {
+	if (c != '\b') {
 		sf::String string = text.getString();
-		string.insert(cursorPos, key);
+		string.insert(cursorPos, c);
 		text.setString(string);
 		SetCursorPos(cursorPos+1);
 	}
@@ -244,28 +244,36 @@ void TTextField::TextEnter(char key) {
 
 void TTextField::SetCursorPos(std::size_t new_pos) {
 	cursorPos = new_pos;
-
-	float x = mouseRect.left + 20 - 2;
-	if (cursorPos != 0) {
-		sf::String temp = text.getString();
-
-		FT.AutoSizeN(5);
-		x += FT.GetTextWidth(temp.substring(0, cursorPos));
-	}
-
-	cursorShape.setPosition(x, mouseRect.top + 9);
+	cursorShape.setPosition(text.findCharacterPos(cursorPos).x, mouseRect.top + 9);
 }
 
 void TTextField::Focussed() {
 	if (focus) {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
+		text.setOutlineColor(colDYell);
 		frame.setOutlineColor(colDYell);
 	} else {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
+		text.setOutlineColor(colWhite);
 		frame.setOutlineColor(colWhite);
 	}
+}
+
+bool TTextField::Click(int x, int y) {
+	if (TWidget::Click(x, y)) {
+		cursorPos = 0;
+		float first = text.findCharacterPos(cursorPos).x;
+		for (;;) {
+			float second = text.findCharacterPos(cursorPos + 1).x;
+			if ((first + second) / 2.f >= x || cursorPos >= text.getString().getSize())
+				break;
+			cursorPos++;
+			first = second;
+		}
+		cursorShape.setPosition(text.findCharacterPos(cursorPos).x, mouseRect.top + 9);
+		return true;
+	}
+	return false;
 }
 
 static void eraseFromText(sf::Text& text, std::size_t pos) {
@@ -334,11 +342,11 @@ void TCheckbox::SetPosition(int x, int y) {
 void TCheckbox::Focussed() {
 	if (focus) {
 		text.setFillColor(colDYell);
-                text.setOutlineColor(colDYell);
+		text.setOutlineColor(colDYell);
 	} else {
 		text.setFillColor(colWhite);
-                text.setOutlineColor(colWhite);
-        }
+		text.setOutlineColor(colWhite);
+	}
 }
 
 void TCheckbox::Draw() const {
@@ -631,9 +639,9 @@ void DrawGUIFrame() {
 	static sf::Sprite top_left(Tex.GetSFTexture(TOP_LEFT));
 	static sf::Sprite top_right(Tex.GetSFTexture(TOP_RIGHT));
 
-	bottom_left.setPosition(0, Winsys.resolution.height - 256);
-	bottom_right.setPosition(Winsys.resolution.width - 256, Winsys.resolution.height - 256);
-	top_right.setPosition(Winsys.resolution.width - 256, 0);
+	bottom_left.setPosition(0, Winsys.resolution.height - bottom_left.getTexture()->getSize().y);
+	bottom_right.setPosition(Winsys.resolution.width - bottom_right.getTexture()->getSize().x, Winsys.resolution.height - bottom_right.getTexture()->getSize().y);
+	top_right.setPosition(Winsys.resolution.width - top_right.getTexture()->getSize().x, 0);
 
 	Winsys.draw(bottom_left);
 	Winsys.draw(bottom_right);
@@ -641,13 +649,13 @@ void DrawGUIFrame() {
 	Winsys.draw(top_right);
 }
 
-void DrawGUIBackground(float logoScale) {
+void DrawGUIBackground(float scale) {
 	DrawGUIFrame();
 
 	static sf::Sprite logo(Tex.GetSFTexture(T_TITLE));
-	logoScale *= 0.5f;
-	logo.setScale(logoScale, logoScale);
-	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width*logoScale)/2, 5);
+	scale *= 0.5f;
+	logo.setScale(scale, scale);
+	logo.setPosition((Winsys.resolution.width - logo.getTextureRect().width*scale)/2, 5);
 	Winsys.draw(logo);
 }
 

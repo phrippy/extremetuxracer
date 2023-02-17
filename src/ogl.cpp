@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -259,7 +259,7 @@ void set_gl_options(TRenderMode mode) {
 			glEnable(GL_DEPTH_TEST);
 			glDisable(GL_CULL_FACE);
 			glEnable(GL_LIGHTING);
-			glDisable(GL_NORMALIZE);
+			glEnable(GL_NORMALIZE);
 			glEnable(GL_ALPHA_TEST);
 			glEnable(GL_BLEND);
 			glDisable(GL_STENCIL_TEST);

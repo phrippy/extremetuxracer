@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------
 EXTREME TUXRACER
 
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -45,7 +45,7 @@ int CScore::AddScore(const std::string& group, const std::string& course, TScore
 		list->scores[0] = score;
 		list->numScores++;
 	} else if (num == MAX_SCORES) {
-		while (val <= list->scores[pos].points && pos < num) pos++;
+		while (pos < num && val <= list->scores[pos].points) pos++;
 		if (pos == lastpos) {
 			list->scores[pos] = score;
 		} else if (pos < lastpos) {
@@ -53,7 +53,7 @@ int CScore::AddScore(const std::string& group, const std::string& course, TScore
 			list->scores[pos] = score;
 		}
 	} else {
-		while (val <= list->scores[pos].points && pos < num) pos++;
+		while (pos < num && val <= list->scores[pos].points) pos++;
 		for (int i=num; i>pos; i--) list->scores[i] = list->scores[i-1];
 		list->scores[pos] = score;
 		list->numScores++;
@@ -89,8 +89,8 @@ const TScoreList* CScore::GetScorelist(const std::string& group, const std::stri
 bool CScore::SaveHighScore() const {
 	CSPList splist;
 
-	for (std::map<std::string, std::map<std::string, TScoreList>>::const_iterator i = Scorelist.cbegin(); i != Scorelist.cend(); ++i) {
-		for (std::map<std::string, TScoreList>::const_iterator j = i->second.cbegin(); j != i->second.cend(); ++j) {
+	for (std::unordered_map<std::string, std::unordered_map<std::string, TScoreList>>::const_iterator i = Scorelist.cbegin(); i != Scorelist.cend(); ++i) {
+		for (std::unordered_map<std::string, TScoreList>::const_iterator j = i->second.cbegin(); j != i->second.cend(); ++j) {
 			const TScoreList *list = &j->second;
 
 			int num = list->numScores;
@@ -191,7 +191,7 @@ void CScore::Keyb(sf::Keyboard::Key key, bool release, int x, int y) {
 			State::manager.RequestEnterState(*State::manager.PreviousState());
 			break;
 		default:
-      			break;
+			break;
 	}
 }
 
@@ -245,12 +245,12 @@ void CScore::Enter() {
 	courseName = AddFramedText(area.left, frametop - 2 + frameheight + 20, framewidth, frameheight, 3, colMBackgr, "", FT.GetSize(), true);
 }
 
-void CScore::Loop(float timestep) {
+void CScore::Loop(float time_step) {
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 

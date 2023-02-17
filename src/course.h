@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -21,7 +21,7 @@ GNU General Public License for more details.
 #include "bh.h"
 #include "mathlib.h"
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #define FLOATVAL(i) (*(GLfloat*)(vnc_array+idx+(i)*sizeof(GLfloat)))
 #define BYTEVAL(i) (*(GLubyte*)(vnc_array+idx+8*sizeof(GLfloat) + i*sizeof(GLubyte)))
@@ -93,10 +93,10 @@ struct TItem : public TObject {
 };
 
 struct TCourse {
-	std::string name;
+	sf::String name;
 	std::string dir;
 	std::string author;
-	std::string desc[MAX_DESCRIPTION_LINES];
+	sf::String desc[MAX_DESCRIPTION_LINES];
 	std::size_t num_lines;
 	TTexture* preview;
 	TVector2d size;
@@ -121,7 +121,7 @@ struct CourseFields {
 
 class CCourseList {
 	std::vector<TCourse> courses;
-	std::map<std::string, std::size_t>  index;
+	std::unordered_map<std::string, std::size_t>  index;
 public:
 	std::string name;
 
@@ -137,7 +137,7 @@ public:
 class CCourse {
 private:
 	const TCourse* curr_course;
-	std::map<std::string, std::size_t> ObjectIndex;
+	std::unordered_map<std::string, std::size_t> ObjectIndex;
 	std::string CourseDir;
 
 	unsigned int nx;
@@ -161,7 +161,7 @@ public:
 	CCourse();
 	~CCourse();
 
-	std::map<std::string, CCourseList> CourseLists;
+	std::unordered_map<std::string, CCourseList> CourseLists;
 	CCourseList*				currentCourseList;
 	std::vector<TTerrType>		TerrList;
 	std::vector<TObjectType>	ObjTypes;

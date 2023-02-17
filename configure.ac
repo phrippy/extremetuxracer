@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.64])
-AC_INIT([Extreme Tux Racer], [0.7.99], [https://sourceforge.net/projects/extremetuxracer],
-        [etr], [http://sourceforge.net/projects/extremetuxracer])
+AC_INIT([Extreme Tux Racer], [0.8.2], [https://sourceforge.net/projects/extremetuxracer],
+        [etr], [https://sourceforge.net/projects/extremetuxracer])
 AC_CONFIG_SRCDIR([src/gui.cpp])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([etr_config.h])
@@ -33,7 +33,8 @@ case "$host_os" in
   *linux*)
      AC_DEFINE([OS_LINUX], [1], [Linux build]) ;;
   *mingw32*)
-     AC_DEFINE([OS_WIN32_MINGW], [1], [MinGW build]) ;;
+     AC_DEFINE([OS_WIN32_MINGW], [1], [MinGW build])
+     AC_DEFINE([UNICODE], [1], [Use unicode functions]) ;;
   *darwin*)
      AC_DEFINE([OS_MAC], [1], [Mac OS X build]) ;;
 esac
@@ -70,15 +71,36 @@ PKG_CHECK_MODULES([SFML_GRAPHICS], [sfml-graphics >= 2.4],
 ],
 [AC_MSG_ERROR([sfml-graphics not found])])
 
-AC_CHECK_LIB([GL], [glBegin], [],
-[AC_MSG_ERROR([libGL not found])])
+AC_CHECK_LIB([GLU], [gluBeginCurve],
+[
+  AC_CHECK_LIB([OpenGL], [glBegin],
+  [
+    LIBS="$LIBS -lOpenGL -lGLU"
+    glfound=true
+  ],
+  [
+    AC_CHECK_LIB([GL], [glBegin],
+    [
+      LIBS="$LIBS -lGL -lGLU"
+      glfound=true
+    ])
+  ])
+])
 
-LIBS="$LIBS -lGL"
+if test x$glfound != xtrue ; then
+  AC_CHECK_LIB([glu32], [gluBeginCurve],
+  [
+    AC_CHECK_LIB([opengl32], [glBegin],
+    [
+      LIBS="$LIBS -lopengl32 -lglu32"
+      glfound=true
+    ])
+  ])
+fi
 
-AC_CHECK_LIB([GLU], [gluBeginCurve], [],
-[AC_MSG_ERROR([libGLU not found])])
-
-LIBS="$LIBS -lGLU"
+if test x$glfound != xtrue ; then
+  AC_MSG_ERROR([No OpenGL libraries found])
+fi
 
 CPPFLAGS="${CPPFLAGS} -DETR_DATA_DIR=\\\"$datadir\\\""
 

@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -108,18 +108,18 @@ void CNewPlayer::Enter() {
 	textfield = AddTextField(emptyString, area.left, frametop, framewidth, frameheight);
 }
 
-void CNewPlayer::Loop(float timestep) {
+void CNewPlayer::Loop(float time_step) {
 	sf::Color col;
 
 	ScopedRenderMode rm(GUI);
 	Winsys.clear();
 
 	if (param.ui_snow) {
-		update_ui_snow(timestep);
+		update_ui_snow(time_step);
 		draw_ui_snow();
 	}
 
-	textfield->UpdateCursor(timestep);
+	textfield->UpdateCursor(time_step);
 
 	DrawGUIBackground(Winsys.scale);
 

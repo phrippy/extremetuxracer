@@ -2,7 +2,7 @@
 EXTREME TUXRACER
 
 Copyright (C) 1999-2001 Jasmin F. Patry (Tuxracer)
-Copyright (C) 2010 Extreme Tuxracer Team
+Copyright (C) 2010 Extreme Tux Racer Team
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -87,8 +87,8 @@ void CCamera::Update(float timestep) {
 	if (pitchdown)	RotatePitch(2 * timestep);
 
 	glLoadIdentity();
-	glRotatef(-vpitch, 1.0, 0.0 , 0.0);
-	glRotatef(-vhead, 0.0, 1.0 , 0.0);
+	glRotatef(-vpitch, 1.0, 0.0, 0.0);
+	glRotatef(-vhead, 0.0, 1.0, 0.0);
 	glTranslatef(-xview, -yview, -zview);
 }
 
@@ -279,16 +279,16 @@ void CTools::Motion(int x, int y) {
 	}
 }
 
-void CTools::Loop(float timestep) {
+void CTools::Loop(float time_step) {
 	switch (tool_mode) {
 		case 0:
-			RenderChar(timestep);
+			RenderChar(time_step);
 			break;
 		case 1:
-			RenderSingleFrame(timestep);
+			RenderSingleFrame(time_step);
 			break;
 		case 2:
-			RenderSequence(timestep);
+			RenderSequence(time_step);
 			break;
 	}
 }
