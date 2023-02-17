@@ -1,0 +1,136 @@
+# Ukrainian translation by latin letters
+# Special thanks to Maksym Prudeus https://www.youtube.com/watch?v=nHeE2x2UNw4
+# You can send hot rays of hate to phippy2@gmail.com
+
+# Please, don't change the idx
+
+*[idx] 0 [engl] PRESS ANY KEY TO START [trans] NATYSNIT' BUD'-JAKU KLAVIŠU
+*[idx] 1 [engl] Enter an event [trans] Počaty gru
+*[idx] 2 [engl] Practice [trans] Praktyka
+*[idx] 3 [engl] Configuration [trans] Nalaštuvannja
+*[idx] 4 [engl] Credits [trans] Avtory
+*[idx] 5 [engl] Quit [trans] Vyjty
+*[idx] 6 [engl] Select an event [trans] Vyberit' gru
+*[idx] 7 [engl] Select a cup [trans] Vyberit' kubok
+*[idx] 8 [engl] Back [trans] Nazad
+*[idx] 9 [engl] Continue [trans] Prodovžyty
+*[idx] 10 [engl] You cannot enter this cup yet [trans] Vy pokyščo ne možete počaty cej kubok
+
+*[idx] 11 [engl] Herring: [trans] Oseledci:
+*[idx] 12 [engl] Time: [trans] Čas:
+*[idx] 13 [engl] Race! [trans] Start!
+*[idx] 14 [engl] seconds [trans] sek
+*[idx] 15 [engl] Ok [trans] OK
+*[idx] 16 [engl] Congratulations! You won the cup [trans] Vitajemo! Vy vygraly kubok!
+*[idx] 17 [engl] You have reached level [trans] Vy dosjagly rivnja
+*[idx] 18 [engl] Sorry, you didn't advance [trans] Vybačte, vy ne perejšly dali
+*[idx] 19 [engl] You don't have any lives left [trans] U vas ne zalyšylos' žodnogo žyttja
+*[idx] 20 [engl] Select a race [trans] Vyberit' gonku
+
+*[idx] 21 [engl] Failed, -1 Tuxlive [trans] Porazka, -1 žyttja
+*[idx] 22 [engl] Success, +/- 0 Tuxlive [trans] Uspih, +/- 0 žyttja
+*[idx] 23 [engl] Success, +1 Tuxlive [trans] Uspih, +1 žyttja
+*[idx] 24 [engl] Success, +2 Tuxlive [trans] Uspih, +2 žyttja
+*[idx] 25 [engl] Race aborted [trans] Gonky skasovano
+*[idx] 26 [engl] Score: [trans] Rezul'tat:
+*[idx] 27 [engl] points [trans] bal
+
+*[idx] 28 [engl] Cancel [trans] Skasyvaty
+*[idx] 29 [engl] Loading [trans] Zavantažennja
+*[idx] 30 [engl] Please wait... [trans] Začekajte...
+
+*[idx] 31 [engl] Fullscreen: [trans] Povnyj ekran:
+*[idx] 32 [engl] Resolution: [trans] Rozdil'na zdatnist':
+*[idx] 33 [engl] Music volume: [trans] Gučnist' muzyky:
+*[idx] 34 [engl] Sound volume: [trans] Gučnist' zvukiv:
+*[idx] 35 [engl] Language: [trans] Mova:
+*[idx] 36 [engl] Level of detail: [trans] Riven' detalizaciji:
+*[idx] 37 [engl] Contributed by: [trans] Stvoreno:
+*[idx] 38 [engl] Event: [trans] Zmagannja:
+*[idx] 39 [engl] Cup: [trans] Kubok:
+*[idx] 40 [engl] Race Over [trans] Gonku zaveršeno
+
+*[idx] 41 [engl] For more configuration options, please edit the [trans] Dlja bil'šoji kil'kosti parametriv konfiguraciji vidredagujte
+*[idx] 42 [engl] file 'options.txt' and read the documentation. [trans] fajl 'options.txt' i pročytajte dokumentaciju
+*[idx] 43 [engl] Help [trans] Dovidka
+*[idx] 44 [engl] 1, 2, 3 - change view mode [trans] 1, 2, 3 - zminyty režym peregljadu
+*[idx] 45 [engl] F - hide/show fps display [trans] F - pokazaty/pryhovaty FPS
+*[idx] 46 [engl] H - hide/show hud display [trans] H - pokazaty/pryhovaty HUD
+*[idx] 47 [engl] S - screenshot [trans] S - znimok ekranu
+*[idx] 48 [engl] U - toggle ui snow [trans] U - uvimknuty/vymknuty snig
+*[idx] 49 [engl] P - set pause mode [trans] P - pauza
+*[idx] 50 [engl] T - trick [trans] T - trjuk
+*[idx] 51 [engl] ESC - abort Race [trans] ESC - zaveršyty gonku
+*[idx] 52 [engl] SPACE - jump [trans] PROBIL - strybok
+*[idx] 53 [engl] CRSR Left - turn left [trans] STRILKA livoruč - povernuty livoruč
+*[idx] 54 [engl] CRSR Right - turn right [trans] STRILKA pravoruč - povernuty pravoruč
+*[idx] 55 [engl] CRSR Up - accelerate [trans] STRILKA vgoru - pryskorennja
+*[idx] 56 [engl] CRSR down - brake [trans] STRILKA vnyz - gal'muvannja
+*[idx] 57 [engl] Keyboard Functions [trans] funkciji klaviatury
+
+*[idx] 58 [engl] Select your player name: [trans] Vyberit' im’ja gravcja:
+*[idx] 59 [engl] Select a character: [trans] Vyberit' personaža:
+*[idx] 60 [engl] Enter [trans] Uvijty
+*[idx] 61 [engl] Register a new player [trans] Zarejestruvaty novogo gravcja
+
+*[idx] 62 [engl] Highscore list [trans] Spysok rekordiv
+*[idx] 63 [engl] No entries for this race [trans] Nemaje zapysiv dlja cijeji gonky
+*[idx] 64 [engl] Back [trans] Nazad
+
+*[idx] 65 [engl] Press any key to return to the main menu [trans] Natysnit' bud'-jaku klavišu, ščob povernutysja do golovnogo menju
+
+*[idx] 66 [engl] Enter a name for the new player and select an avatar: [trans] Vvedit' im’ja dlja novogo gravcja ta vyberit' avatar:
+
+*[idx] 67 [engl] Loading resources, [trans] Zavantažennja resursiv,
+*[idx] 68 [engl] please wait ... [trans] bud' laska, začekajte ...
+
+*[idx] 69 [engl] Mirror track: Off [trans] Dzerkal'na dorižka: Vymkneno
+*[idx] 70 [engl] Mirror track: On [trans] Dzerkal'na dorižka: Uvimkneno
+
+*[idx] 71 [engl] Light: Sunny [trans] Osvitlennja: Sonjačno
+*[idx] 72 [engl] Light: Cloudy [trans] Osvitlennja: Hmarno
+*[idx] 73 [engl] Light: Evening [trans] Osvitlennja: Večir
+*[idx] 74 [engl] Light: Night [trans] Osvitlennja: Nič
+
+*[idx] 75 [engl] Snow: No [trans] Snig: Ni
+*[idx] 76 [engl] Snow: A little [trans] Snig: Malo
+*[idx] 77 [engl] Snow: Some [trans] Snig: Trohy je
+*[idx] 78 [engl] Snow: A lot [trans] Bagato
+
+*[idx] 79 [engl] Wind: No [trans] Viter: Ni
+*[idx] 80 [engl] Wind: Breeze [trans] Viter: Ni
+*[idx] 81 [engl] Wind: Strong [trans] Viter: Sylnyj
+*[idx] 82 [engl] Wind: Blustery [trans] Viter: Burhlyvyj
+
+*[idx] 83 [engl] Randomize settings [trans] Randomizyvaty nalaštuvannja
+
+*[idx] 84 [engl] Score [trans] Rezul'tat
+*[idx] 85 [engl] Herring [trans] Oseledci
+*[idx] 86 [engl] Time [trans] Čas
+*[idx] 87 [engl] Path length [trans] Dovžyna šljahu
+*[idx] 88 [engl] Average speed [trans] Serednja švydkist'
+*[idx] 89 [engl] Position [trans] Pozycija
+*[idx] 90 [engl] in highscore list [trans] u spysku rekordiv
+
+*[idx] 91 [engl] Author [trans] Avtor
+
+*[idx] 92 [engl] Loading courses failed. [trans] Ne vdalosja zavantažytu kursu
+*[idx] 93 [engl] Loading characters failed. [trans] Ne vdalosja zavantažytu personaži.
+*[idx] 94 [engl] Loading environments failed. [trans] Ne vdalosja zavantažyty seredovyšča.
+*[idx] 95 [engl] Loading terrains failed. [trans] Ne vdalosja zavantažyty landšafty.
+*[idx] 96 [engl] Loading avatars failed. [trans] Ne vdalosja zavantažyty avatary.
+*[idx] 97 [engl] herrings [trans] oseledci
+*[idx] 98 [engl] sec [trans] sek
+
+*[idx] 99 [engl] 1st [trans] 1-yj
+*[idx] 100 [engl] 2nd [trans] 2-yj
+*[idx] 101 [engl] 3rd [trans] 3-ij
+*[idx] 102 [engl] 4th [trans] 4-yj
+*[idx] 103 [engl] 5th [trans] 5-yj
+*[idx] 104 [engl] 6th [trans] 6-yj
+*[idx] 105 [engl] 7th [trans] 7-yj
+*[idx] 106 [engl] 8th [trans] 8-yj
+*[idx] 107 [engl] 9th [trans] 9-yj
+*[idx] 108 [engl] 10th [trans] 10-yj
+
+*[idx] 109 [engl] Unknown [trans] Nevidomo
