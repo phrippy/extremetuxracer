@@ -274,6 +274,7 @@ pkgdata_DATA = \
 	eo.lst		\
 	du_NL.lst	\
 	ro_RO.lst	\
+	uk_UA.lst	\
 	xx_XX.lst
 
 EXTRA_DIST = $(pkgdata_DATA)
